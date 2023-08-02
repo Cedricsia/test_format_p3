@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "name": "pizza",
+  "image": "pizza.jpg",
+  "step": {
+    "1": "cuire la pate",
+    "2": "ajouter les tomates",
+    "3": "raper le fromage ",
+    "4": "enfouner la pizza",
+    "5": "bon ap "
+  },
+  "user_id": 3
+}
