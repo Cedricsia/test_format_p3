@@ -7,7 +7,7 @@ function App() {
   const [recette, setRecette] = useState(null);
   const [requette, setRequette] = useState({ name: "", step: { 1: "" } });
   const [champs, setChamps] = useState("");
-
+  console.log(requette);
   useEffect(() => {
     axios
       .get("http://localhost:5000/ingredient")
