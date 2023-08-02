@@ -8,13 +8,13 @@ export const getOne = (id) => {
   return db.query("SELECT * FROM recettes where id= ?", [id]);
 };
 
-export const addOne = ({ name, step }) => {
+export const addOne = ({ name, step, difficulty, cooking_time, time }) => {
   const stepJSON = JSON.stringify(step); // Convertir l'objet step en chaîne JSON valide
 
-  return db.query("INSERT INTO recettes (name, step) VALUES (?, ?)", [
-    name,
-    stepJSON,
-  ]);
+  return db.query(
+    "INSERT INTO recettes (name, step, difficulty, cooking_time, time) VALUES (?, ?, ?, ?, ?)",
+    [name, stepJSON, difficulty, cooking_time, time]
+  );
 };
 
 export const deleteOne = (id) => {

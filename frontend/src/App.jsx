@@ -5,7 +5,13 @@ import axios from "axios";
 function App() {
   const [test, setTest] = useState(null);
   const [recette, setRecette] = useState(null);
-  const [requette, setRequette] = useState({ name: "", step: { 1: "" } });
+  const [requette, setRequette] = useState({
+    name: "",
+    step: { 1: "" },
+    difficulty: "",
+    cooking_time: "",
+    time: "",
+  });
   const [champs, setChamps] = useState("");
   console.log(requette);
   useEffect(() => {
@@ -19,6 +25,8 @@ function App() {
       .get("http://localhost:5000/recette")
       .then((res) => setRecette(res.data));
   }, []);
+  console.log(requette);
+  console.log(champs);
 
   const addName = (e) => {
     setRequette({ ...requette, name: e.target.value });
@@ -58,6 +66,15 @@ function App() {
       .then((res) => console.log("post ok "))
       .catch((err) => console.error(err));
   };
+  const handledifff = (e) => {
+    setRequette({ ...requette, difficulty: e.target.value });
+  };
+  const handleprepa = () => {
+    setRequette({ ...requette, cooking_time: parseInt(champs) });
+  };
+  const handletime = () => {
+    setRequette({ ...requette, time: parseInt(champs) });
+  };
 
   return (
     <>
@@ -66,6 +83,42 @@ function App() {
           <div>
             <label htmlFor="Nom de la recette">Nom de la recette</label>
             <input type="text" onChange={addName} />
+          </div>
+          <div>
+            <div id="dif">
+              <label htmlFor="diff-select">choississez une difficulter:</label>
+              <select name="pets" id="pet-select" onChange={handledifff}>
+                <option value="">--choissiez une option--</option>
+                <option value="apprentis">apprentis</option>
+                <option value="cuisinier">cuisinier</option>
+                <option value="chef">chef</option>
+              </select>
+            </div>
+            <div id="prepa">
+              <input
+                onChange={handlechamps}
+                type="text"
+                name=""
+                id=""
+                placeholder="temps de prepation en min"
+              />
+              <button type="button" onClick={handleprepa}>
+                ✅
+              </button>
+            </div>
+            <div id="time">
+              {" "}
+              <input
+                onChange={handlechamps}
+                type="text"
+                name=""
+                id=""
+                placeholder="temps total en min"
+              />
+              <button type="button" onClick={handletime}>
+                ✅
+              </button>
+            </div>
           </div>
 
           <div>
@@ -103,7 +156,10 @@ function App() {
             </button>
           </div>
           <div>
-            <button onClick={handlePost}> Envoyer la recette </button>
+            <button type="button" onClick={handlePost}>
+              {" "}
+              Envoyer la recette{" "}
+            </button>
           </div>
         </form>
       </div>
