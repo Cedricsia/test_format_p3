@@ -4,7 +4,8 @@ import {
   addOne,
   deleteOne,
   updateOne,
-} from "../models/recette.model.js";
+  getOneLike,
+} from "../models/test.model.js";
 
 export const browse = async (req, res) => {
   try {
@@ -74,5 +75,20 @@ export const modifyOne = async (req, res) => {
   } catch (e) {
     console.error(e);
     res.status(500).json({ msg: "Erreur " });
+  }
+};
+
+export const findOneLike = async (req, res) => {
+  try {
+    const { content } = req.params;
+    const [result] = await getOneLike(content);
+    if (result.length) {
+      res.json(result);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ msg: "Erreur" });
   }
 };
